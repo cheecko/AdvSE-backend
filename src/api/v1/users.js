@@ -46,7 +46,7 @@ router.get("/:id", (req, res) => {
   }
 })
 
-router.put("/", (req, res) => {
+router.post("/", (req, res) => {
   try {
     const userId = uuidv4()
     const user = {userId: userId, ...req.body}
@@ -68,7 +68,7 @@ router.post("/default", (req, res) => {
   }
 })
 
-router.post("/:id", (req, res) => {
+router.put("/:id", (req, res) => {
   try {
     const userId = req.params.id
     users = users.map(user => user.userId === userId ? {...user, ...req.body} : user)
