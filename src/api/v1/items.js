@@ -1,5 +1,6 @@
 const express = require('express')
 const router = express.Router()
+// db connection
 const pool = require('./../../utils/db')
 const baseSize = 100
 
