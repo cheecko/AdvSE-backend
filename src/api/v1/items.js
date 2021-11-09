@@ -7,6 +7,7 @@ const getBasePrice = (price, size) => {
   return (price / size * baseSize).toFixed(2)
 }
 
+// http://localhost:5000/api/v1/items/
 router.get("/", async (req, res) => {
   try {
     const query = `
@@ -36,6 +37,7 @@ router.get("/", async (req, res) => {
   }
 })
 
+// http://localhost:5000/api/v1/items/1
 router.get("/:id", async (req, res) => {
   try {
     const itemId = req.params.id
@@ -69,7 +71,7 @@ router.get("/:id", async (req, res) => {
         discount_amount: undefined,
         discount_percentage: undefined
       }
-    })
+    }, {variants: []})
     return res.json(result)
   } catch (e) {
     res.status(500).json({ message: 'Something went wrong.' })
