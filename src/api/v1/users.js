@@ -30,7 +30,7 @@ router.get("/", (req, res) => {
   try {
     return res.json(users)
   } catch (e) {
-    res.status(500).json({ message: 'Something went wrong.' });
+    res.status(500).json({ message: 'Something went wrong.' })
     console.error(e)
   }
 })
@@ -41,7 +41,7 @@ router.get("/:id", (req, res) => {
     const user = users.find(user => user.userId === userId)
     return res.json(user)
   } catch (e) {
-    res.status(500).json({ message: 'Something went wrong.' });
+    res.status(500).json({ message: 'Something went wrong.' })
     console.error(e)
   }
 })
@@ -53,7 +53,7 @@ router.post("/", (req, res) => {
     users = [...users, user]
     return res.json(user)
   } catch (e) {
-    res.status(500).json({ message: 'Something went wrong.' });
+    res.status(500).json({ message: 'Something went wrong.' })
     console.error(e)
   }
 })
@@ -63,7 +63,7 @@ router.post("/default", (req, res) => {
     users = defaultUsers
     return res.json(users)
   } catch (e) {
-    res.status(500).json({ message: 'Something went wrong.' });
+    res.status(500).json({ message: 'Something went wrong.' })
     console.error(e)
   }
 })
@@ -74,7 +74,7 @@ router.put("/:id", (req, res) => {
     users = users.map(user => user.userId === userId ? {...user, ...req.body} : user)
     return res.json({userId, ...req.body})
   } catch (e) {
-    res.status(500).json({ message: 'Something went wrong.' });
+    res.status(500).json({ message: 'Something went wrong.' })
     console.error(e)
   }
 })
@@ -84,7 +84,7 @@ router.delete("/", (req, res) => {
     users = []
     return res.json(users)
   } catch (e) {
-    res.status(500).json({ message: 'Something went wrong.' });
+    res.status(500).json({ message: 'Something went wrong.' })
     console.error(e)
   }
 })
@@ -95,7 +95,7 @@ router.delete("/:id", (req, res) => {
     users = users.filter(user => user.userId !== userId)
     return res.json(users)
   } catch (e) {
-    res.status(500).json({ message: 'Something went wrong.' });
+    res.status(500).json({ message: 'Something went wrong.' })
     console.error(e)
   }
 })
