@@ -33,11 +33,11 @@ router.get("/", async (req, res) => {
     const whereQuery = req.query.id ? ` AND i.id IN (${req.query.id})` : ''
     const sortQuery = req.query.sort ? getSortQuery(req.query.sort) : 'i.id'
     const query = `
-      SELECT i.id, i.brand_id, ib.name brand_name, i.type_id, it.name type_name, i.name, i.image, 4.3 rating, i.created, i.timestamp, iv.size, iv.price, iv.discount_percentage
+      SELECT i.id, i.brand_id, ib.brand_name, i.type_id, it.type_name, i.name, i.image, 4.3 rating, i.created, i.timestamp, iv.size, iv.price, iv.discount_percentage
       FROM item i
-      JOIN item_type it ON it.id = i.type_id
-      JOIN item_brand ib ON ib.id = i.brand_id
-      JOIN item_category ic ON ic.id = i.category_id
+      JOIN item_type it ON it.type_id = i.type_id
+      JOIN item_brand ib ON ib.brand_id = i.brand_id
+      JOIN item_category ic ON ic.category_id = i.category_id
       JOIN (
         SELECT *
         FROM item_variant
@@ -66,11 +66,11 @@ router.get("/:id", async (req, res) => {
   try {
     const itemId = req.params.id
     const query = `
-      SELECT i.id, i.brand_id, ib.name brand_name, i.type_id, it.name type_name, i.category_id, i.name, i.image, i.description, i.instruction, i.created, i.timestamp, iv.variant_id, iv.size, iv.stock, iv.price, iv.original_price, iv.discount_amount, iv.discount_percentage
+      SELECT i.id, i.brand_id, ib.brand_name, i.type_id, it.type_name, i.category_id, i.name, i.image, i.description, i.instruction, i.created, i.timestamp, iv.size, iv.stock, iv.price, iv.original_price, iv.discount_amount, iv.discount_percentage
       FROM item i
-      JOIN item_type it ON it.id = i.type_id
-      JOIN item_brand ib ON ib.id = i.brand_id
-      JOIN item_category ic ON ic.id = i.category_id
+      JOIN item_type it ON it.type_id = i.type_id
+      JOIN item_brand ib ON ib.brand_id = i.brand_id
+      JOIN item_category ic ON ic.category_id = i.category_id
       JOIN item_variant iv ON iv.item_id = i.id
       WHERE i.id = ?;
     `
