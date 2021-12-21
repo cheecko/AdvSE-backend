@@ -27,6 +27,38 @@ const getSortQuery = (sort) => {
   }
 }
 
+// http://localhost:5000/api/v1/items/brands
+router.get("/brands", async (req, res) => {
+  try {
+    const query = `
+      SELECT brand_id, brand_name
+      FROM item_brand;
+    `
+    const [rows] = await pool.query(query)
+    return res.json(rows)
+  } catch (e) {
+    res.status(500).json({ message: 'Something went wrong.' })
+    console.error(e)
+  }
+})
+
+// http://localhost:5000/api/v1/items/brands/1
+router.put("/brands/:id", async (req, res) => {
+  // update item brand from a certain id
+  // see api in users.js for example to get id from req
+})
+
+// http://localhost:5000/api/v1/items/brands
+router.post("/brands", async (req, res) => {
+  // create new item brand
+})
+
+// http://localhost:5000/api/v1/items/brands/1
+router.delete("/brands/:id", async (req, res) => {
+  // delete item brand from a certain id
+  // see api in users.js for example to get id from req
+})
+
 // http://localhost:5000/api/v1/items/
 router.get("/", async (req, res) => {
   try {
