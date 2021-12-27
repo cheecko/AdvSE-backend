@@ -42,6 +42,22 @@ router.get("/brands", async (req, res) => {
   }
 })
 
+// http://localhost:5000/api/v1/items/category      @Lenni
+router.get("/category", async (req, res) => {
+  try {
+    const query = `
+      SELECT category_id, category_name
+      FROM item_category;
+    `
+    const [rows] = await pool.query(query)
+    return res.json(rows)
+  } catch (e) {
+    res.status(500).json({ message: 'Something went wrong.' })
+    console.error(e)
+  }
+})
+
+
 // http://localhost:5000/api/v1/items/brands/1
 router.put("/brands/:id", async (req, res) => {
   // update item brand from a certain id

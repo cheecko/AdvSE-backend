@@ -30,5 +30,6 @@ app.use('/api/v1/users', require('./api/v1/users'))
 app.use('/api/v1/items', require('./api/v1/items'))
 app.use('/api/v1/payments', require('./api/v1/payments'))
 
+//http://localhost:5000/  or just localhost:5000
 const port = process.env.PORT || 5000
 app.listen(port, () => console.log(`Listening on port ${port}...`))
