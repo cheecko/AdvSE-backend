@@ -43,6 +43,10 @@ const swaggerOptions = {
     },
     servers: [
       {
+        url: 'http://34.76.185.185:5000/',
+        description: 'Production server',
+      },
+      {
         url: 'http://localhost:5000/',
         description: 'Development server',
       },
