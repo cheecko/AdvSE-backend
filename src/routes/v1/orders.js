@@ -252,10 +252,14 @@ router.get("/", async (req, res) => {
     }
 
     const query = `
-      SELECT o.id, o.email, o.total, o.subtotal, o.shipping_cost, o.payment_method_id, pm.name payment_method_name, o.status, o.created, o.timestamp
+      SELECT o.id, o.email, o.total, o.subtotal, o.shipping_cost, o.payment_method_id, pm.name payment_method_name, o.status, o.created, o.timestamp, i.name, i.image, SUM(oi.quantity) total_quantity
       FROM \`order\` o
+      JOIN order_item oi ON oi.order_id = o.id
+      JOIN item i ON oi.order_item_id = i.id
       JOIN payment_method pm ON pm.id = o.payment_method_id
-      WHERE ${whereQuery.length ? whereQuery.join(' AND ') : '1'};
+      WHERE ${whereQuery.length ? whereQuery.join(' AND ') : '1'}
+      GROUP BY o.id
+      ORDER BY o.id DESC;
     `
     const [rows] = await pool.query(query, queryState)
     return res.json(rows)
